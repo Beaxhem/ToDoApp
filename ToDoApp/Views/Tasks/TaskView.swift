@@ -32,7 +32,7 @@ struct TaskView: View {
                         .font(.title2)
                         .bold()
                     
-                    Text(task.summary)
+                    Text(task.details)
                         .font(.subheadline)
                 }
             }

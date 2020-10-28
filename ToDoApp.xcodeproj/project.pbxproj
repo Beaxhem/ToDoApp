@@ -89,11 +89,11 @@
 		8821787B254879CB0044DCED /* ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				8821787C254879CB0044DCED /* ToDoApp.swift */,
 				8825954D2549D9BC006D6E23 /* Extensions */,
 				882178922548817E0044DCED /* Resources */,
 				882178912548816E0044DCED /* Models */,
 				882178932548818C0044DCED /* Views */,
-				8821787C254879CB0044DCED /* ToDoApp.swift */,
 				88217880254879D00044DCED /* Assets.xcassets */,
 				88217885254879D00044DCED /* Info.plist */,
 				88217882254879D00044DCED /* Preview Content */,
@@ -130,8 +130,8 @@
 		882178932548818C0044DCED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				882178C52548CA2A0044DCED /* Tasks */,
 				882178B42548C5DD0044DCED /* RootView.swift */,
+				882178C52548CA2A0044DCED /* Tasks */,
 			);
 			path = Views;
 			sourceTree = "<group>";

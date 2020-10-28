@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct TasksListView: View {
-    
     @EnvironmentObject var db: DatabaseManager
     
+    @Binding var selectedDate: Date
+    
     var body: some View {
-        GeometryReader { geometry in
-            LazyVStack(alignment: .leading) {
-                ForEach(db.tasks) { task in
-                    TaskView(task: task)
-                }
-            }
-            .frame(width: geometry.size.width)
-            .onAppear {
-                db.getTasks()
+        LazyVStack(alignment: .leading, spacing: 15) {
+            ForEach(db.tasks) { task in
+                TaskView(task: task)
             }
         }
+        .frame(minWidth: 0, maxWidth: .infinity)
+        .onAppear {
+            db.getTasks()
+        }
+        
     }
 
 }
 
 struct TasksListView_Previews: PreviewProvider {
     static var previews: some View {
-        TasksListView()
+        TasksListView(selectedDate: .constant(Date()))
     }
 }

@@ -19,6 +19,9 @@
 		882178C72548CA450044DCED /* TasksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882178C62548CA450044DCED /* TasksListView.swift */; };
 		882178CA2548CA6B0044DCED /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882178C92548CA6B0044DCED /* TaskView.swift */; };
 		8825954F2549D9CA006D6E23 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8825954E2549D9CA006D6E23 /* Calendar.swift */; };
+		88C5E9B9254A1C8D00C5A231 /* CalendarLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */; };
+		88C5E9BC254A1CFB00C5A231 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9BB254A1CFB00C5A231 /* Formatter.swift */; };
+		88C5E9BF254A242300C5A231 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9BE254A242300C5A231 /* AppDelegate.swift */; };
 		D6DE30129A5017E67405D807 /* Pods_ToDoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13002A0724FA95E75F9057C7 /* Pods_ToDoApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +42,9 @@
 		882178C62548CA450044DCED /* TasksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListView.swift; sourceTree = "<group>"; };
 		882178C92548CA6B0044DCED /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		8825954E2549D9CA006D6E23 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLineView.swift; sourceTree = "<group>"; };
+		88C5E9BB254A1CFB00C5A231 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		88C5E9BE254A242300C5A231 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				88217894254882380044DCED /* DatabaseManager.swift */,
+				88C5E9BB254A1CFB00C5A231 /* Formatter.swift */,
+				88C5E9BE254A242300C5A231 /* AppDelegate.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -135,6 +143,7 @@
 				882178C62548CA450044DCED /* TasksListView.swift */,
 				882178C92548CA6B0044DCED /* TaskView.swift */,
 				882178BB2548C6CE0044DCED /* AddTaskView.swift */,
+				88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -275,6 +284,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C5E9BF254A242300C5A231 /* AppDelegate.swift in Sources */,
+				88C5E9BC254A1CFB00C5A231 /* Formatter.swift in Sources */,
 				882178C72548CA450044DCED /* TasksListView.swift in Sources */,
 				8825954F2549D9CA006D6E23 /* Calendar.swift in Sources */,
 				882178B52548C5DD0044DCED /* RootView.swift in Sources */,
@@ -283,6 +294,7 @@
 				882178B12548C3250044DCED /* Task.swift in Sources */,
 				8821787D254879CB0044DCED /* ToDoApp.swift in Sources */,
 				88217895254882380044DCED /* DatabaseManager.swift in Sources */,
+				88C5E9B9254A1C8D00C5A231 /* CalendarLineView.swift in Sources */,
 				882178CA2548CA6B0044DCED /* TaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

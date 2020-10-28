@@ -11,6 +11,7 @@ import PartialSheet
 struct AddTaskView: View {
     @State var summary = ""
     @State var details = ""
+    @State var date = Date()
     
     @EnvironmentObject var db: DatabaseManager
     @EnvironmentObject var sheetManager : PartialSheetManager
@@ -33,6 +34,10 @@ struct AddTaskView: View {
                     .background(Color.black)
                     .cornerRadius(10)
 
+            }
+            
+            DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
+                Text("Select a date")
             }
         }.padding()
     }

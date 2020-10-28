@@ -10,9 +10,11 @@ import PartialSheet
 
 @main
 struct ToDoApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    let partialSheetManager = PartialSheetManager()
+    
     var body: some Scene {
-        let partialSheetManager = PartialSheetManager()
-        
         WindowGroup {
             RootView()
                 .environmentObject(DatabaseManager())
@@ -20,3 +22,4 @@ struct ToDoApp: App {
         }
     }
 }
+

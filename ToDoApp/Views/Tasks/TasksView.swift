@@ -12,26 +12,18 @@ struct TasksView: View {
     @EnvironmentObject var sheetManager: PartialSheetManager
     @Environment(\.calendar) var calendar
     
+    @State var selectedDate = Date()
+    
     var today: String {
         let date = Date()
-        let formatter1 = DateFormatter()
-        formatter1.dateStyle = .medium
-        
-        return formatter1.string(from: date)
+        let formatter = getFormatter(style: .medium)
+        return formatter.string(from: date)
     }
-    
-    var dates: [Date] {
-        let ds = calendar.generateDates(
-            inside: calendar.dateInterval(of: .month, for: Date())!,
-            matching: DateComponents(day: 1, hour: 0, minute: 0, second: 0)
-        )
-        return ds
-    }
-    
+   
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 30) {
+                VStack(alignment: .leading) {
                     HStack {
                         Text("Your tasks")
                             .bold()
@@ -40,6 +32,7 @@ struct TasksView: View {
                         Image(systemName: "person.circle")
                             .font(.largeTitle)
                     }
+                    .padding(.bottom, 40)
                     
                     HStack {
                         VStack(alignment: .leading) {
@@ -58,36 +51,24 @@ struct TasksView: View {
                                 AddTaskView()
                             })
                         } label: {
-                            Text("Add new task")
-                                .bold()
-                                .padding(10)
-                                .background(Color.red)
-                                .cornerRadius(10)
-                                .foregroundColor(.white)
+                            HStack {
+                                Image(systemName: "plus")
+                                
+                                Text("Add task")
+                                    .bold()
+                                    
+                            }
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                                
                                 
                         }
                     }
-                    ScrollView(.horizontal) {
-                        HStack {
-                            LazyHStack {
-                                ForEach(dates, id: \.self) { date in
-                                    VStack {
-                                        if let components = date.get(.day, .weekday), let day = components.date, let weekday = components.weekday {
-                                            Text("\(weekday)")
-                                                .font(.callout)
-                                            
-                                            Text("\(day)")
-                                                .font(.title2)
-                                            Text("Hello")
-                                        } 
-                                    }
-                                }
-                            }
-                        }
-                        Divider()
-                    }
+                    CalendarLineView(selectedDate: $selectedDate)
                     
-                    TasksListView()
+                    TasksListView(selectedDate: $selectedDate)
                             
 
                 }.padding()
@@ -96,6 +77,8 @@ struct TasksView: View {
             .navigationBarHidden(true)
         }
     }
+    
+    
 }
 
 struct TasksView_Previews: PreviewProvider {

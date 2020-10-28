@@ -11,6 +11,7 @@ class Task: Object, Identifiable {
     @objc dynamic var id = UUID()
     @objc dynamic var summary: String = ""
     @objc dynamic var details: String = ""
+    @objc dynamic var createdOn = Date()
     
     override static func ignoredProperties() -> [String] {
         return ["id"]

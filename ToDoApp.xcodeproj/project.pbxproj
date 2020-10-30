@@ -132,8 +132,8 @@
 		882178932548818C0044DCED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				88681B85254C6C9500F2A523 /* Calendar */,
 				882178B42548C5DD0044DCED /* RootView.swift */,
+				88681B85254C6C9500F2A523 /* Calendar */,
 				882178C52548CA2A0044DCED /* Tasks */,
 			);
 			path = Views;

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		881542EF254C157700F739A0 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881542EE254C157700F739A0 /* Array.swift */; };
 		8821787D254879CB0044DCED /* ToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8821787C254879CB0044DCED /* ToDoApp.swift */; };
 		88217881254879D00044DCED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88217880254879D00044DCED /* Assets.xcassets */; };
 		88217884254879D00044DCED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88217883254879D00044DCED /* Preview Assets.xcassets */; };
@@ -20,6 +19,7 @@
 		882178C72548CA450044DCED /* TasksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882178C62548CA450044DCED /* TasksListView.swift */; };
 		882178CA2548CA6B0044DCED /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882178C92548CA6B0044DCED /* TaskView.swift */; };
 		8825954F2549D9CA006D6E23 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8825954E2549D9CA006D6E23 /* Calendar.swift */; };
+		88681B87254C6CAD00F2A523 /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88681B86254C6CAD00F2A523 /* CalendarCellView.swift */; };
 		88C5E9B9254A1C8D00C5A231 /* CalendarLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */; };
 		88C5E9BC254A1CFB00C5A231 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9BB254A1CFB00C5A231 /* Formatter.swift */; };
 		88C5E9BF254A242300C5A231 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9BE254A242300C5A231 /* AppDelegate.swift */; };
@@ -30,7 +30,6 @@
 		13002A0724FA95E75F9057C7 /* Pods_ToDoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		437938D5E5F8DF945B79338A /* Pods-ToDoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoApp.debug.xcconfig"; path = "Target Support Files/Pods-ToDoApp/Pods-ToDoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4A984D2B07ED18F4E583107F /* Pods-ToDoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoApp.release.xcconfig"; path = "Target Support Files/Pods-ToDoApp/Pods-ToDoApp.release.xcconfig"; sourceTree = "<group>"; };
-		881542EE254C157700F739A0 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		88217879254879CB0044DCED /* ToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8821787C254879CB0044DCED /* ToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoApp.swift; sourceTree = "<group>"; };
 		88217880254879D00044DCED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +43,7 @@
 		882178C62548CA450044DCED /* TasksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListView.swift; sourceTree = "<group>"; };
 		882178C92548CA6B0044DCED /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		8825954E2549D9CA006D6E23 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		88681B86254C6CAD00F2A523 /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
 		88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLineView.swift; sourceTree = "<group>"; };
 		88C5E9BB254A1CFB00C5A231 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		88C5E9BE254A242300C5A231 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +132,7 @@
 		882178932548818C0044DCED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				88681B85254C6C9500F2A523 /* Calendar */,
 				882178B42548C5DD0044DCED /* RootView.swift */,
 				882178C52548CA2A0044DCED /* Tasks */,
 			);
@@ -145,7 +146,6 @@
 				882178C62548CA450044DCED /* TasksListView.swift */,
 				882178C92548CA6B0044DCED /* TaskView.swift */,
 				882178BB2548C6CE0044DCED /* AddTaskView.swift */,
-				88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -154,9 +154,17 @@
 			isa = PBXGroup;
 			children = (
 				8825954E2549D9CA006D6E23 /* Calendar.swift */,
-				881542EE254C157700F739A0 /* Array.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		88681B85254C6C9500F2A523 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */,
+				88681B86254C6CAD00F2A523 /* CalendarCellView.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		DAA3EF9A1C8220B36EDBE964 /* Pods */ = {
@@ -291,12 +299,12 @@
 				88C5E9BC254A1CFB00C5A231 /* Formatter.swift in Sources */,
 				882178C72548CA450044DCED /* TasksListView.swift in Sources */,
 				8825954F2549D9CA006D6E23 /* Calendar.swift in Sources */,
+				88681B87254C6CAD00F2A523 /* CalendarCellView.swift in Sources */,
 				882178B52548C5DD0044DCED /* RootView.swift in Sources */,
 				882178C32548C97E0044DCED /* TasksView.swift in Sources */,
 				882178BC2548C6CE0044DCED /* AddTaskView.swift in Sources */,
 				882178B12548C3250044DCED /* Task.swift in Sources */,
 				8821787D254879CB0044DCED /* ToDoApp.swift in Sources */,
-				881542EF254C157700F739A0 /* Array.swift in Sources */,
 				88217895254882380044DCED /* DatabaseManager.swift in Sources */,
 				88C5E9B9254A1C8D00C5A231 /* CalendarLineView.swift in Sources */,
 				882178CA2548CA6B0044DCED /* TaskView.swift in Sources */,

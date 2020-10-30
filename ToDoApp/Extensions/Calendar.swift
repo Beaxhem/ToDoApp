@@ -35,7 +35,7 @@ extension Date {
     
     func monthAsString() -> String {
         let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("MMM")
+        df.setLocalizedDateFormatFromTemplate("MMM, YYYY")
         return df.string(from: self)
     }
 }

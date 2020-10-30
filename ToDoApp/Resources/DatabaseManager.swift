@@ -6,6 +6,7 @@
 //
 
 import RealmSwift
+import SwiftUI
 
 enum DatabaseError: Error {
     case writeError
@@ -18,10 +19,10 @@ class DatabaseManager: ObservableObject {
     
     @Published var tasks = [Task]()
     
-    func saveToDatabase(obj: Object) throws {
+    func saveToDatabase(object: Object) throws {
         do {
             try realm.write {
-                realm.add(obj)
+                realm.add(object)
                 print("Successfully added a task to a db")
                 getTasks()
             }
@@ -31,8 +32,28 @@ class DatabaseManager: ObservableObject {
     }
     
     func getTasks() {
-        let t = Array(realm.objects(Task.self).sorted(byKeyPath: "createdOn", ascending: false))
-        self.tasks = t
+        withAnimation {
+            let t = Array(realm.objects(Task.self).sorted(byKeyPath: "createdOn", ascending: false))
+            self.tasks = t
+        }
+    }
+    
+    func delete(object: Object) {
+        if !object.isInvalidated {
+            do {
+                
+                try realm.write {
+                    
+                    realm.delete(object)
+                    
+                    self.getTasks()
+                }
+                print("Successfully deleted the task")
+            } catch let error {
+                print(error)
+            }
+        }
+        
     }
 }
 

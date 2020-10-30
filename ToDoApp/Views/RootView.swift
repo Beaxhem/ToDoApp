@@ -15,10 +15,19 @@ struct RootView: View {
         TabView(selection: $selectedTab) {
             TasksView()
                 .tabItem {
+                    Image(systemName: "list.bullet")
                     Text("My tasks")
                 }
                 .tag(0)
+            
+            TasksView()
+                .tabItem {
+                    Image(systemName: "chart.pie.fill")
+                    Text("Dashboard")
+                }
+                .tag(0)
         }
+        .accentColor(.red)
         .addPartialSheet()
     }
 }

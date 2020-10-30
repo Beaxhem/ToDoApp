@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TaskView: View {
+    @EnvironmentObject var db: DatabaseManager
+    
     var task: Task
     
     var body: some View {
@@ -54,12 +56,16 @@ struct TaskView: View {
         .shadow(radius: 3)
         .contextMenu {
             Button(action: {
-                
+                deleteTask()
             }) {
                 Text("Delete")
                 Image(systemName: "trash")
             }
         }
+    }
+
+    private func deleteTask() {
+       db.delete(object: task)
     }
 }
 

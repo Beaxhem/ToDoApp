@@ -49,7 +49,7 @@ struct AddTaskView: View {
         task.details = details
         
         do {
-            try db.saveToDatabase(obj: task)
+            try db.saveToDatabase(object: task)
             sheetManager.closePartialSheet()
         } catch DatabaseError.writeError {
             print("Some trouble with writing to db.")

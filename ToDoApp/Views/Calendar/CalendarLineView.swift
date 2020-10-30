@@ -15,7 +15,7 @@ struct CalendarLineView: View {
     @State private var offset: CGFloat = 0
     @State private var index = 0
     @State private var currentOffset: CGFloat = 0
-    @State private var currentMonth = ""
+    @State private var currentMonthAndYear = ""
     
     let spacing: CGFloat = 8
     
@@ -24,18 +24,22 @@ struct CalendarLineView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading, spacing: 0) {
-                Text(currentMonth)
+                // Display current month and year
+                Text(currentMonthAndYear)
                     .bold()
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .padding(.bottom, 10)
                 
                 GeometryReader { outsideProxy in
                     ScrollView(.horizontal, showsIndicators: false) {
+                        // ZStack to hide Color.clear
                         ZStack {
+                            // Calculate inner offset
                             GeometryReader { insideProxy in
                                 Color.clear
                                     .preference(key: ScrollOffsetPreferenceKey.self, value: [self.calculateContentOffset(fromOutsideProxy: outsideProxy, insideProxy: insideProxy)])
                             }
+                            
                             HStack(spacing: self.spacing) {
                                 ForEach(dates, id: \.self) { date in
                                     CalendarCell(date: date)
@@ -52,15 +56,19 @@ struct CalendarLineView: View {
                                 self.offset = value.translation.width - geometry.size.width * CGFloat(self.index)
                             })
                             .onEnded({ value in
+                                // Check if offset is enough to scroll
+                                // Forward
                                 if -value.predictedEndTranslation.width > geometry.size.width / 2, self.index < self.dates.count - 1 {
                                     self.index += 1
                                 }
+                                // Back
                                 if value.predictedEndTranslation.width > geometry.size.width / 2, self.index > 0 {
                                     self.index -= 1
                                 }
                                 
                                 var d = self.dates
                                 
+                                // The conditions for loading new and removing extra dates
                                 if self.index == 0 {
                                     d = leadingLimitReached()
                                 } else if self.index > 4 {
@@ -71,6 +79,7 @@ struct CalendarLineView: View {
                                 
                                 withAnimation { self.offset = -(geometry.size.width + 2*self.spacing) * CGFloat(self.index) }
                                 
+                                // Update current date
                                 getMonthByIndex()
                             })
                     )
@@ -83,18 +92,20 @@ struct CalendarLineView: View {
         }
         .frame(height: 90)
         .onAppear {
+            // Load data on appear
             loadDates()
             getMonthByIndex()
-            
         }
     }
     
+    // Get current month on appear
     func loadDates(){
         let current = generateDays(for: Date())
 
         self.dates = current
     }
     
+    // Executed on reaching the first loaded element
     func leadingLimitReached() -> [Date] {
         var d = self.dates
         d = removeFuture(dates: d)
@@ -107,6 +118,7 @@ struct CalendarLineView: View {
         return d
     }
     
+    // Executed on reaching the last loaded element
     func trailingLimitReached() -> [Date] {
         var d = self.dates
         
@@ -120,6 +132,7 @@ struct CalendarLineView: View {
         return d
     }
     
+    // Load dates on reaching leading limit
     func loadPast(dates: [Date]) -> [Date] {
         let monthAgo = calendar.date(byAdding: .month, value: -1, to: dates.first!)
         
@@ -128,6 +141,7 @@ struct CalendarLineView: View {
         return past
     }
     
+    // Load dates on reaching trailing limit
     func loadFuture(dates: [Date]) -> [Date] {
         let monthLater = calendar.date(byAdding: .month, value: 1, to: dates.last!)
         
@@ -136,6 +150,7 @@ struct CalendarLineView: View {
         return future
     }
 
+    // Remove dates on reaching the first loaded element
     private func removeFuture(dates: [Date]) -> [Date] {
         if dates.count > 31 {
             let futureNumber = generateDays(for: dates.last!).count
@@ -147,6 +162,7 @@ struct CalendarLineView: View {
         
     }
     
+    // Remove dates on reaching the last loaded element
     private func removePast(dates: [Date]) -> [Date] {
         if dates.count > 31 {
             let pastNumber = generateDays(for: dates.first!).count
@@ -157,6 +173,7 @@ struct CalendarLineView: View {
         return dates
     }
     
+    // Update info about current month and year
     private func getMonthByIndex() {
         var monthCounter: [Int: Int] = [:]
         
@@ -169,9 +186,10 @@ struct CalendarLineView: View {
 
         let date: Date? = calendar.date(from: dateComponents!)
         
-        self.currentMonth = date!.monthAsString()
+        self.currentMonthAndYear = date!.monthAsString()
     }
     
+    // Get dates which are visible at the moment
     private func getVisibleDates() -> [Date] {
         let monthNum = self.index * 7
         
@@ -180,6 +198,7 @@ struct CalendarLineView: View {
         return Array(self.dates[monthNum..<endLimit])
     }
     
+    // Generate days of the same month as given
     private func generateDays(for date: Date) -> [Date] {
         return calendar.generateDates(
             inside: calendar.dateInterval(of: .month, for: date)!,
@@ -192,6 +211,7 @@ struct CalendarLineView: View {
     }
 }
 
+// Used to update current offset
 struct ScrollOffsetPreferenceKey: PreferenceKey {
     typealias Value = [CGFloat]
 

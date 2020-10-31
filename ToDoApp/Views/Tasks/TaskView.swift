@@ -31,7 +31,7 @@ struct TaskView: View {
                         .frame(width: 3)
                         .cornerRadius(10)
                     VStack(alignment: .leading) {
-                        Text(task.summary)
+                        Text(task.title)
                             .font(.title2)
                             .bold()
                         
@@ -48,6 +48,32 @@ struct TaskView: View {
                     .font(.subheadline)
                     
                     Spacer()
+                    
+                    if task.isDone {
+                        Text("Completed ✅")
+                            .foregroundColor(Color.black.opacity(0.3))
+                            .padding(.vertical, 8)
+                            .padding(.horizontal)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(5)
+                    } else {
+                        Button {
+                            do {
+                                try DatabaseManager.shared.completeTask(task: task)
+                            } catch let error {
+                                print(error)
+                            }
+                        } label: {
+                            Text("Complete")
+                                .foregroundColor(.black)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(5)
+                        }
+                    }
+                    
+
                 }.padding(.top, 20)
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
@@ -55,17 +81,17 @@ struct TaskView: View {
             .background(Color.white)
             .cornerRadius(10)
             .shadow(radius: 3)
-            .contextMenu {
-                Button(action: {
-                    withAnimation {
-                        deleteTask()
-                    }
-                    
-                }) {
-                    Text("Delete")
-                    Image(systemName: "trash")
-                }
-            }
+//            .contextMenu {
+//                Button(action: {
+//                    withAnimation {
+//                        deleteTask()
+//                    }
+//                    
+//                }) {
+//                    Text("Delete")
+//                    Image(systemName: "trash")
+//                }
+//            }
         }
         
     }

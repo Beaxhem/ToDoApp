@@ -40,38 +40,41 @@ class DatabaseManager: ObservableObject {
     
     func delete(object: Object) {
         if !object.isInvalidated {
+            let wg = DispatchGroup()
+            wg.enter()
             
-                let wg = DispatchGroup()
-                wg.enter()
-                
-                DispatchQueue.main.async { [weak self] in
-                    guard let strongSelf = self else {
-                        return
+            DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else {
+                    return
+                }
+                do {
+                    try strongSelf.realm.write {
+                        strongSelf.realm.delete(object)
                     }
-                    do {
-                        try strongSelf.realm.write {
-                            strongSelf.realm.delete(object)
-                        }
-                        print("Successfully deleted the task")
-                        
-                    } catch let error {
-                        print(error)
-                        return
-                    }
+                    print("Successfully deleted the task")
                     
-                    wg.leave()
+                } catch let error {
+                    print(error)
+                    return
                 }
                 
-                wg.notify(queue: .main) {
-                    if object.isInvalidated {
-                        self.getTasks()
-                    }
-                }
-                
-                
+                wg.leave()
+            }
             
+            wg.notify(queue: .main) {
+                if object.isInvalidated {
+                    self.getTasks()
+                }
+            }
         }
-        
+    }
+    
+    func completeTask(task: Task) throws {
+        try realm.write {
+            task.isDone.toggle()
+            
+            getTasks()
+        }
     }
 }
 

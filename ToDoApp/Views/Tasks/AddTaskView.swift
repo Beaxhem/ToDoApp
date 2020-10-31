@@ -9,44 +9,47 @@ import SwiftUI
 import PartialSheet
 
 struct AddTaskView: View {
-    @State var summary = ""
+    @State var taskTitle = ""
     @State var details = ""
     @State var date = Date()
     
-    @EnvironmentObject var db: DatabaseManager
+    @ObservedObject var db = DatabaseManager.shared
     @EnvironmentObject var sheetManager : PartialSheetManager
     
     var body: some View {
-        VStack {
-            Text("Summary")
-            TextField("", text: $summary)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Text("Details")
-            TextField("", text: $details)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Button(action: { addTask() }) {
-                Text("Create task")
-                    .bold()
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.black)
-                    .cornerRadius(10)
+        ScrollView {
+            VStack {
+                Text("New task")
+                TextField("", text: $taskTitle)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Text("Details")
+                TextEditor(text: $details)
+                    .border(Color.gray, width: 2)
+                Button(action: { addTask() }) {
+                    Text("Create task")
+                        .bold()
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.black)
+                        .cornerRadius(10)
 
-            }
-            
-            DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
-                Text("Select a date")
-            }
-        }.padding()
+                }
+                
+                DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
+                    Text("Select a date")
+                }
+            }.padding()
+        }
+        
     }
     
     func addTask() {
         let task = Task()
         
-        task.summary = summary
+        task.title = taskTitle
         task.details = details
+        task.isDone = false
         
         do {
             try db.saveToDatabase(object: task)

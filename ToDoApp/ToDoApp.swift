@@ -17,7 +17,6 @@ struct ToDoApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environmentObject(DatabaseManager())
                 .environmentObject(partialSheetManager)
         }
     }

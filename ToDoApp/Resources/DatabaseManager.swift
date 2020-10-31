@@ -33,7 +33,7 @@ class DatabaseManager: ObservableObject {
     
     func getTasks() {
         withAnimation {
-            let t = Array(realm.objects(Task.self).sorted(byKeyPath: "createdOn", ascending: false))
+            let t = Array(realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false))
             self.tasks = t
         }
     }

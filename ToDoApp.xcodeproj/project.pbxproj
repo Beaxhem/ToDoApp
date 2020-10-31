@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		880690C3254D79AC004AD7E9 /* TaskDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880690C2254D79AC004AD7E9 /* TaskDetailsView.swift */; };
 		8821787D254879CB0044DCED /* ToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8821787C254879CB0044DCED /* ToDoApp.swift */; };
 		88217881254879D00044DCED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88217880254879D00044DCED /* Assets.xcassets */; };
 		88217884254879D00044DCED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88217883254879D00044DCED /* Preview Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		13002A0724FA95E75F9057C7 /* Pods_ToDoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		437938D5E5F8DF945B79338A /* Pods-ToDoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoApp.debug.xcconfig"; path = "Target Support Files/Pods-ToDoApp/Pods-ToDoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4A984D2B07ED18F4E583107F /* Pods-ToDoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoApp.release.xcconfig"; path = "Target Support Files/Pods-ToDoApp/Pods-ToDoApp.release.xcconfig"; sourceTree = "<group>"; };
+		880690C2254D79AC004AD7E9 /* TaskDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsView.swift; sourceTree = "<group>"; };
 		88217879254879CB0044DCED /* ToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8821787C254879CB0044DCED /* ToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoApp.swift; sourceTree = "<group>"; };
 		88217880254879D00044DCED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				882178C62548CA450044DCED /* TasksListView.swift */,
 				882178C92548CA6B0044DCED /* TaskView.swift */,
 				882178BB2548C6CE0044DCED /* AddTaskView.swift */,
+				880690C2254D79AC004AD7E9 /* TaskDetailsView.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				882178B52548C5DD0044DCED /* RootView.swift in Sources */,
 				882178C32548C97E0044DCED /* TasksView.swift in Sources */,
 				882178BC2548C6CE0044DCED /* AddTaskView.swift in Sources */,
+				880690C3254D79AC004AD7E9 /* TaskDetailsView.swift in Sources */,
 				882178B12548C3250044DCED /* Task.swift in Sources */,
 				8821787D254879CB0044DCED /* ToDoApp.swift in Sources */,
 				88217895254882380044DCED /* DatabaseManager.swift in Sources */,

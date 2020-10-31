@@ -9,8 +9,10 @@ import SwiftUI
 
 struct TaskView: View {
     @EnvironmentObject var db: DatabaseManager
-    
+
     var task: Task
+
+    @State var isPresented = false
     
     var body: some View {
         if !task.isInvalidated {
@@ -49,28 +51,19 @@ struct TaskView: View {
                     
                     Spacer()
                     
-                    if task.isDone {
-                        Text("Completed ✅")
-                            .foregroundColor(Color.black.opacity(0.3))
-                            .padding(.vertical, 8)
-                            .padding(.horizontal)
+                    Button {
+                        do {
+                            try DatabaseManager.shared.completeTask(task: task)
+                        } catch let error {
+                            print(error)
+                        }
+                    } label: {
+                        Text(task.isDone ? "Completed ✅": "Complete")
+                            .foregroundColor(task.isDone ? Color.black.opacity(0.3) : .black)
+                            .padding(8)
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(5)
-                    } else {
-                        Button {
-                            do {
-                                try DatabaseManager.shared.completeTask(task: task)
-                            } catch let error {
-                                print(error)
-                            }
-                        } label: {
-                            Text("Complete")
-                                .foregroundColor(.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(5)
-                        }
+                            
                     }
                     
 
@@ -81,6 +74,12 @@ struct TaskView: View {
             .background(Color.white)
             .cornerRadius(10)
             .shadow(radius: 3)
+            .onTapGesture {
+                self.isPresented.toggle()
+            }
+            .sheet(isPresented: $isPresented) {
+                TaskDetailsView(task: task)
+            }
 //            .contextMenu {
 //                Button(action: {
 //                    withAnimation {

@@ -69,7 +69,7 @@ struct TasksView: View {
                     CalendarLineView(selectedDate: $selectedDate)
                     
                     TasksListView(selectedDate: $selectedDate)
-                            
+                        .padding(.top)
 
                 }.padding()
             }

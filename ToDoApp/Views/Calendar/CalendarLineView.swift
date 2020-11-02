@@ -10,6 +10,8 @@ import SwiftUI
 struct CalendarLineView: View {
     @Environment(\.calendar) var calendar
     
+    @ObservedObject var db = DatabaseManager.shared
+    
     @Binding var selectedDate: Date
     
     @State private var offset: CGFloat = 0
@@ -44,6 +46,10 @@ struct CalendarLineView: View {
                                 ForEach(dates, id: \.self) { date in
                                     CalendarCell(date: date)
                                         .frame(width: geometry.size.width / 8)
+                                        .onTapGesture {
+                                            db.selectedDate = date
+                                            db.getTasks()
+                                        }
                                 }
                             }
                             

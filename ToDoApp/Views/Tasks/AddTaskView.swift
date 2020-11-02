@@ -10,22 +10,38 @@ import PartialSheet
 
 struct AddTaskView: View {
     @State var taskTitle = ""
-    @State var details = ""
+    @State var details = "Enter details..."
     @State var date = Date()
+    @State var category: Category? = nil
     
     @ObservedObject var db = DatabaseManager.shared
     @EnvironmentObject var sheetManager : PartialSheetManager
     
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(alignment: .leading) {
                 Text("New task")
+                    .font(.headline)
+                
                 TextField("", text: $taskTitle)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(8)
+                    .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.gray.opacity(0.2), lineWidth: 1))
+                
+                DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
+                    Text("Select a date")
+                }
+                
+                OptionsView(options: db.categories, selectedOption: $category)
                 
                 Text("Details")
+                    .font(.headline)
+                
                 TextEditor(text: $details)
-                    .border(Color.gray, width: 2)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 200)
+                    .padding(8)
+                    .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.gray.opacity(0.2), lineWidth: 1))
+                    
+                
                 Button(action: { addTask() }) {
                     Text("Create task")
                         .bold()
@@ -33,15 +49,27 @@ struct AddTaskView: View {
                         .padding()
                         .background(Color.black)
                         .cornerRadius(10)
+                        
 
                 }
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .padding(.top)
                 
-                DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
-                    Text("Select a date")
-                }
+                
             }.padding()
+            .onAppear {
+                getCategories()
+            }
         }
         
+    }
+    
+    func getCategories() {
+        do {
+            try db.getCategories()
+        } catch let error {
+            print(error)
+        }
     }
     
     func addTask() {
@@ -50,6 +78,8 @@ struct AddTaskView: View {
         task.title = taskTitle
         task.details = details
         task.isDone = false
+        task.date = date
+        task.category = category!
         
         do {
             try db.saveToDatabase(object: task)

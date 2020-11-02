@@ -21,6 +21,11 @@
 		882178CA2548CA6B0044DCED /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882178C92548CA6B0044DCED /* TaskView.swift */; };
 		8825954F2549D9CA006D6E23 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8825954E2549D9CA006D6E23 /* Calendar.swift */; };
 		88681B87254C6CAD00F2A523 /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88681B86254C6CAD00F2A523 /* CalendarCellView.swift */; };
+		88717AB4254F3E6000D58FA2 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88717AB3254F3E6000D58FA2 /* ColorPalette.swift */; };
+		88717AB8254F6C2100D58FA2 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88717AB7254F6C2100D58FA2 /* OptionsView.swift */; };
+		88717ABC254F6C6200D58FA2 /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88717ABB254F6C6200D58FA2 /* OptionView.swift */; };
+		88717ABF254F6C7800D58FA2 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88717ABE254F6C7800D58FA2 /* Option.swift */; };
+		88717AC2254F756F00D58FA2 /* CreateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88717AC1254F756F00D58FA2 /* CreateCategoryView.swift */; };
 		88C5E9B9254A1C8D00C5A231 /* CalendarLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */; };
 		88C5E9BC254A1CFB00C5A231 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9BB254A1CFB00C5A231 /* Formatter.swift */; };
 		88C5E9BF254A242300C5A231 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5E9BE254A242300C5A231 /* AppDelegate.swift */; };
@@ -46,6 +51,11 @@
 		882178C92548CA6B0044DCED /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		8825954E2549D9CA006D6E23 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		88681B86254C6CAD00F2A523 /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
+		88717AB3254F3E6000D58FA2 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		88717AB7254F6C2100D58FA2 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		88717ABB254F6C6200D58FA2 /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
+		88717ABE254F6C7800D58FA2 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		88717AC1254F756F00D58FA2 /* CreateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryView.swift; sourceTree = "<group>"; };
 		88C5E9B8254A1C8D00C5A231 /* CalendarLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLineView.swift; sourceTree = "<group>"; };
 		88C5E9BB254A1CFB00C5A231 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		88C5E9BE254A242300C5A231 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +108,7 @@
 				882178922548817E0044DCED /* Resources */,
 				882178912548816E0044DCED /* Models */,
 				882178932548818C0044DCED /* Views */,
+				882178B42548C5DD0044DCED /* RootView.swift */,
 				88217880254879D00044DCED /* Assets.xcassets */,
 				88217885254879D00044DCED /* Info.plist */,
 				88217882254879D00044DCED /* Preview Content */,
@@ -117,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				882178B02548C3250044DCED /* Task.swift */,
+				88717ABE254F6C7800D58FA2 /* Option.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -127,6 +139,7 @@
 				88217894254882380044DCED /* DatabaseManager.swift */,
 				88C5E9BB254A1CFB00C5A231 /* Formatter.swift */,
 				88C5E9BE254A242300C5A231 /* AppDelegate.swift */,
+				88717AB3254F3E6000D58FA2 /* ColorPalette.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -134,7 +147,7 @@
 		882178932548818C0044DCED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				882178B42548C5DD0044DCED /* RootView.swift */,
+				88717AB6254F6C0A00D58FA2 /* Options */,
 				88681B85254C6C9500F2A523 /* Calendar */,
 				882178C52548CA2A0044DCED /* Tasks */,
 			);
@@ -149,6 +162,7 @@
 				882178C92548CA6B0044DCED /* TaskView.swift */,
 				882178BB2548C6CE0044DCED /* AddTaskView.swift */,
 				880690C2254D79AC004AD7E9 /* TaskDetailsView.swift */,
+				88717AC1254F756F00D58FA2 /* CreateCategoryView.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -168,6 +182,15 @@
 				88681B86254C6CAD00F2A523 /* CalendarCellView.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		88717AB6254F6C0A00D58FA2 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				88717AB7254F6C2100D58FA2 /* OptionsView.swift */,
+				88717ABB254F6C6200D58FA2 /* OptionView.swift */,
+			);
+			path = Options;
 			sourceTree = "<group>";
 		};
 		DAA3EF9A1C8220B36EDBE964 /* Pods */ = {
@@ -301,16 +324,21 @@
 				88C5E9BF254A242300C5A231 /* AppDelegate.swift in Sources */,
 				88C5E9BC254A1CFB00C5A231 /* Formatter.swift in Sources */,
 				882178C72548CA450044DCED /* TasksListView.swift in Sources */,
+				88717AB8254F6C2100D58FA2 /* OptionsView.swift in Sources */,
 				8825954F2549D9CA006D6E23 /* Calendar.swift in Sources */,
 				88681B87254C6CAD00F2A523 /* CalendarCellView.swift in Sources */,
+				88717ABC254F6C6200D58FA2 /* OptionView.swift in Sources */,
+				88717AB4254F3E6000D58FA2 /* ColorPalette.swift in Sources */,
 				882178B52548C5DD0044DCED /* RootView.swift in Sources */,
 				882178C32548C97E0044DCED /* TasksView.swift in Sources */,
 				882178BC2548C6CE0044DCED /* AddTaskView.swift in Sources */,
+				88717AC2254F756F00D58FA2 /* CreateCategoryView.swift in Sources */,
 				880690C3254D79AC004AD7E9 /* TaskDetailsView.swift in Sources */,
 				882178B12548C3250044DCED /* Task.swift in Sources */,
 				8821787D254879CB0044DCED /* ToDoApp.swift in Sources */,
 				88217895254882380044DCED /* DatabaseManager.swift in Sources */,
 				88C5E9B9254A1C8D00C5A231 /* CalendarLineView.swift in Sources */,
+				88717ABF254F6C7800D58FA2 /* Option.swift in Sources */,
 				882178CA2548CA6B0044DCED /* TaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

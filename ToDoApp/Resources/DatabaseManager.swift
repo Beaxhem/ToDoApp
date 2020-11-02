@@ -18,6 +18,8 @@ class DatabaseManager: ObservableObject {
     private let realm = try! Realm()
     
     @Published var tasks = [Task]()
+    @Published var categories = [Category]()
+    @Published var selectedDate = Date()
     
     func saveToDatabase(object: Object) throws {
         do {
@@ -33,9 +35,33 @@ class DatabaseManager: ObservableObject {
     
     func getTasks() {
         withAnimation {
-            let t = Array(realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false))
+            let t = Array(realm.objects(Task.self).filter("date BETWEEN %@", getStartAndEndOfDate(selectedDate)).sorted(byKeyPath: "date", ascending: false))
             self.tasks = t
         }
+    }
+    
+    func getTasks(of date: Date) {
+        withAnimation {
+            let t = Array(realm.objects(Task.self).filter("date BETWEEN %@", getStartAndEndOfDate(date)).sorted(byKeyPath: "date", ascending: false))
+            self.tasks = t
+        }
+    }
+    
+    func getStartAndEndOfDate(_ date: Date) -> [Date] {
+        let calendar = Calendar.current
+        let start = calendar.generateDates(
+            inside: calendar.dateInterval(of: .day, for: date)!,
+            matching: DateComponents(hour: 0, minute: 0, second: 0)
+        )[0]
+        
+        let endDate = calendar.date(byAdding: .day, value: 1, to: start)!
+        
+        let end = calendar.generateDates(
+            inside: calendar.dateInterval(of: .day, for: endDate)!,
+            matching: DateComponents(hour: 0, minute: 0, second: 0)
+        )[0]
+        
+        return [start, end]
     }
     
     func delete(object: Object) {
@@ -75,6 +101,12 @@ class DatabaseManager: ObservableObject {
             
             getTasks()
         }
+    }
+    
+    func getCategories() throws {
+        let c = realm.objects(Category.self)
+        
+        self.categories = Array(c)
     }
 }
 

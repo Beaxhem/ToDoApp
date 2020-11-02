@@ -22,60 +22,69 @@ struct TasksView: View {
    
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Your tasks")
-                            .bold()
-                            .font(.largeTitle)
-                        Spacer()
-                        Image(systemName: "person.circle")
-                            .font(.largeTitle)
-                    }
-                    .padding(.bottom, 40)
-                    
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(today)
-                                .font(.caption)
-                            
-                            Text("Today")
+            ZStack {
+                Color.backgroundColor.edgesIgnoringSafeArea(.all)
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Your tasks")
                                 .bold()
-                                .font(.title)
+                                .font(.largeTitle)
+                            Spacer()
+                            Image(systemName: "person.circle")
+                                .font(.largeTitle)
                         }
+                        .padding(.bottom, 40)
                         
-                        Spacer()
-                        
-                        Button {
-                            sheetManager.showPartialSheet(content: {
-                                AddTaskView()
-                            })
-                        } label: {
-                            HStack {
-                                Image(systemName: "plus")
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(today)
+                                    .font(.caption)
                                 
-                                Text("Add task")
+                                Text("Today")
                                     .bold()
+                                    .font(.title)
+                            }
+                            
+                            Spacer()
+                            
+                            Button {
+                                withAnimation {
+                                    sheetManager.showPartialSheet(content: {
+                                        AddTaskView()
+                                    })
+                                }
+                                
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus")
+                                    
+                                    Text("Add task")
+                                        .bold()
+                                        
+                                }
+                                .foregroundColor(.white)
+                                .padding(10)
+                                .background(Color.red)
+                                .cornerRadius(10)
+                                    
                                     
                             }
-                            .foregroundColor(.white)
-                            .padding(10)
-                            .background(Color.red)
-                            .cornerRadius(10)
-                                
-                                
                         }
-                    }
-                    CalendarLineView(selectedDate: $selectedDate)
-                    
-                    TasksListView(selectedDate: $selectedDate)
-                        .padding(.top)
+                        CalendarLineView(selectedDate: $selectedDate)
+                        
+                        TasksListView(selectedDate: $selectedDate)
+                            .padding(.top)
 
-                }.padding()
+                    }.padding()
+                }
+                .navigationTitle("")
+                .navigationBarHidden(true)
+                
             }
-            .navigationTitle("")
-            .navigationBarHidden(true)
+            
         }
+
     }
     
     

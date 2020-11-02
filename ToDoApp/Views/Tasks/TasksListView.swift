@@ -54,7 +54,7 @@ struct TasksListView: View {
     }
     
     private func getTasks() {
-        db.getTasks()
+        db.getTasks(of: selectedDate)
     }
     
     private func getCompletedTasks(_ tasks: [Task]) -> [Task] {

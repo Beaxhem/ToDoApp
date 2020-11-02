@@ -28,7 +28,7 @@ struct TaskView: View {
                 
                 HStack {
                     Rectangle()
-                        .fill(Color.red)
+                        .fill(Color(hex: task.category?.color ?? "#000000"))
                         .frame(minHeight: 0, maxHeight: .infinity)
                         .frame(width: 3)
                         .cornerRadius(10)
@@ -63,36 +63,21 @@ struct TaskView: View {
                             .padding(8)
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(5)
-                            
                     }
-                    
-
                 }.padding(.top, 20)
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
             .padding()
             .background(Color.white)
             .cornerRadius(10)
-            .shadow(radius: 3)
+            .shadow(color: Color.gray.opacity(0.2), radius: 3, x: 0, y: 7)
             .onTapGesture {
                 self.isPresented.toggle()
             }
             .sheet(isPresented: $isPresented) {
                 TaskDetailsView(task: task)
             }
-//            .contextMenu {
-//                Button(action: {
-//                    withAnimation {
-//                        deleteTask()
-//                    }
-//                    
-//                }) {
-//                    Text("Delete")
-//                    Image(systemName: "trash")
-//                }
-//            }
         }
-        
     }
 
     private func deleteTask() {

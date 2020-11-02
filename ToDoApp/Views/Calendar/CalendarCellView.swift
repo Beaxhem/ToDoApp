@@ -10,6 +10,8 @@ import SwiftUI
 struct CalendarCell: View {
     let date: Date
     
+    @ObservedObject var db = DatabaseManager.shared
+    
     var body: some View {
         Group {
             if let day = date.get(.day) {
@@ -50,7 +52,8 @@ struct CalendarCell: View {
     }
     
     private func isToday(date: Date) -> Bool {
-        return Calendar.current.isDateInToday(date)
+        let formatter = getFormatter(style: .medium)
+        return formatter.string(from: date) == formatter.string(from: db.selectedDate)
     }
     
     private func getWeekday(_ day: Int) -> String {

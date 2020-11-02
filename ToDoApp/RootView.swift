@@ -30,6 +30,7 @@ struct RootView: View {
         .accentColor(.red)
         .addPartialSheet()
     }
+    
 }
 
 struct RootView_Previews: PreviewProvider {

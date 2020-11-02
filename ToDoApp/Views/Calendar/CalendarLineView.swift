@@ -101,6 +101,7 @@ struct CalendarLineView: View {
             // Load data on appear
             loadDates()
             getMonthByIndex()
+            
         }
     }
     
@@ -109,6 +110,8 @@ struct CalendarLineView: View {
         let current = generateDays(for: Date())
 
         self.dates = current
+        
+        db.getAllTasks()
     }
     
     // Executed on reaching the first loaded element

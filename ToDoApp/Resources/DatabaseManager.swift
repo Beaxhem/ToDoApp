@@ -17,6 +17,7 @@ class DatabaseManager: ObservableObject {
     
     private let realm = try! Realm()
     
+    @Published var allTasks = [Task]()
     @Published var tasks = [Task]()
     @Published var categories = [Category]()
     @Published var selectedDate = Date()
@@ -40,11 +41,11 @@ class DatabaseManager: ObservableObject {
         }
     }
     
-    func getTasks(of date: Date) {
-        withAnimation {
-            let t = Array(realm.objects(Task.self).filter("date BETWEEN %@", getStartAndEndOfDate(date)).sorted(byKeyPath: "date", ascending: false))
-            self.tasks = t
-        }
+    
+    func getAllTasks() {
+        let t = Array(realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false))
+        
+        self.allTasks = t
     }
     
     func getStartAndEndOfDate(_ date: Date) -> [Date] {

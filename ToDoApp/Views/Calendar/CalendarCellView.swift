@@ -15,37 +15,28 @@ struct CalendarCell: View {
     var body: some View {
         Group {
             if let day = date.get(.day) {
-//                if day == 1 {
-//                    Text(date.monthAsString())
-//                        .bold()
-//                        .foregroundColor(.purple)
-//                        .frame(minWidth: 0, maxWidth: .infinity)
-//                }
                 VStack(spacing: 0) {
                     let weekday = date.get(.weekday)
                     
-                    if isToday(date: date) {
-                        Text("\(getWeekday(weekday))")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                        Text("\(day)")
-                            .font(.title2)
-                            .foregroundColor(.red)
-                        Rectangle()
-                            .fill(Color.red)
-                            .frame(height: 2)
-                            .zIndex(1)
-                    } else {
-                        Text("\(getWeekday(weekday))")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                            
-                        Text("\(day)")
-                            .font(.title2)
-                    }
+                    let today = isToday(date: date)
+                    
+                    Text("\(getWeekday(weekday))")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    Text("\(day)")
+                        .font(.title2)
+                        .foregroundColor(today ? .red : .black)
+                    
+                    HStack {
+                        ForEach(getTodaysCategories(date: date)) { category in
+                            Circle()
+                                .fill(Color(hex: category.color))
+                                .frame(width: 3)
+                        }
+                        
+                    }.frame(height: 4)
                 }
                 .padding(.trailing, 7)
-                
             }
         }
         
@@ -77,7 +68,21 @@ struct CalendarCell: View {
         }
     }
     
-    
+    func getTodaysCategories(date: Date) -> [Category] {
+        var categories = [Category]()
+        let formatter = getFormatter(style: .medium)
+        
+        for task in DatabaseManager.shared.allTasks {
+            if formatter.string(from: task.date) == formatter.string(from: date) {
+                if let category = task.category {
+                    categories.append(category)
+                }
+                
+            }
+        }
+        
+        return Array(Set(categories))
+    }
 }
 
 struct CalendarCell_Previews: PreviewProvider {

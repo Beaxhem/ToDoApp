@@ -27,7 +27,7 @@ class DatabaseManager: ObservableObject {
             try realm.write {
                 realm.add(object)
                 print("Successfully added a task to a db")
-                getTasks()
+                getAllTasks()
             }
         } catch let error {
             throw error
@@ -36,14 +36,21 @@ class DatabaseManager: ObservableObject {
     
     func getTasks() {
         withAnimation {
-            let t = Array(realm.objects(Task.self).filter("date BETWEEN %@", getStartAndEndOfDate(selectedDate)).sorted(byKeyPath: "date", ascending: false))
+            let t = Array(realm.objects(Task.self).filter("startDate BETWEEN %@", getStartAndEndOfDate(selectedDate)).sorted(byKeyPath: "startDate", ascending: false))
             self.tasks = t
         }
     }
     
+    func _getTasks() -> [Task] {
+        let t = Array(realm.objects(Task.self).filter("startDate BETWEEN %@", getStartAndEndOfDate(selectedDate)).sorted(byKeyPath: "startDate", ascending: false))
+        
+        return t
+    }
     
     func getAllTasks() {
-        let t = Array(realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false))
+        getTasks()
+        
+        let t = Array(realm.objects(Task.self).sorted(byKeyPath: "startDate", ascending: false))
         
         self.allTasks = t
     }

@@ -80,7 +80,9 @@ struct TasksView: View {
                 }
                 .navigationTitle("")
                 .navigationBarHidden(true)
-                
+                .onAppear {
+                    NotificationCenter.shared.scheduleTaskReminderNotification(task: Task())
+                }
             }
             
         }

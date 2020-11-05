@@ -68,7 +68,7 @@ struct TaskDetailsView: View {
             HStack {
                 Image(systemName: "calendar")
                     .foregroundColor(.gray)
-                Text(getFormatter(style: .full).string(from: task.date))
+                Text(getFormatter(style: .full).string(from: task.startDate))
                     .font(.subheadline)
             }
             .padding(.vertical)

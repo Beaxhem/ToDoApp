@@ -136,7 +136,7 @@ struct CalendarLineView: View {
         let future = loadFuture(dates: d)
         d.append(contentsOf: future)
         
-        self.index -= 3
+        self.index -= 4
         
         return d
     }
@@ -200,9 +200,15 @@ struct CalendarLineView: View {
     
     // Get dates which are visible at the moment
     private func getVisibleDates() -> [Date] {
-        let monthNum = self.index * 7
+        var monthNum = self.index * 7
         
-        let endLimit = dates[monthNum...].count >  6 ? monthNum + 6 : monthNum + dates[monthNum...].count
+        if dates[monthNum...].count < 6 {
+            self.dates = loadFuture(dates: dates)
+            monthNum -= 4
+            self.index -= 4
+        }
+        
+        let endLimit = monthNum + 6
         
         return Array(self.dates[monthNum..<endLimit])
     }

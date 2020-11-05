@@ -45,7 +45,12 @@ struct TaskView: View {
                 HStack {
                     HStack {
                         Image(systemName: "clock")
-                        Text("10-11 am")
+                        if let hour = task.startDate.get(.hour), let minutes = task.startDate.get(.minute) {
+                            let startMark = hour < 12 ? "AM" : "PM"
+                            
+                            Text("\(hour):\(minutes) \(startMark)")
+                        }
+                        
                     }
                     .font(.subheadline)
                     

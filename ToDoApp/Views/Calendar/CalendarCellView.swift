@@ -73,7 +73,7 @@ struct CalendarCell: View {
         let formatter = getFormatter(style: .medium)
         
         for task in DatabaseManager.shared.allTasks {
-            if formatter.string(from: task.date) == formatter.string(from: date) {
+            if formatter.string(from: task.startDate) == formatter.string(from: date) {
                 if let category = task.category {
                     categories.append(category)
                 }

@@ -31,7 +31,7 @@ class Task: Object, Identifiable {
     @objc dynamic var id = UUID()
     @objc dynamic var title: String = ""
     @objc dynamic var details: String = ""
-    @objc dynamic var date = Date()
+    @objc dynamic var startDate = Date()
     @objc dynamic var isDone: Bool = false
     @objc dynamic var category: Category? = Category()
     

@@ -11,7 +11,7 @@ import PartialSheet
 struct AddTaskView: View {
     @State var taskTitle = ""
     @State var details = "Enter details..."
-    @State var date = Date()
+    @State var startDate = Date()
     @State var category: Category? = nil
     
     @ObservedObject var db = DatabaseManager.shared
@@ -27,9 +27,9 @@ struct AddTaskView: View {
                     .padding(8)
                     .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.gray.opacity(0.2), lineWidth: 1))
                 
-                DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
-                    Text("Select a date")
-                }
+                DatePicker(selection: $startDate, in: Date()..., displayedComponents: [.date, .hourAndMinute]) {
+                    Text("Start")
+                }.datePickerStyle(DefaultDatePickerStyle())
                 
                 OptionsView(options: db.categories, selectedOption: $category)
                 
@@ -78,7 +78,7 @@ struct AddTaskView: View {
         task.title = taskTitle
         task.details = details
         task.isDone = false
-        task.date = date
+        task.startDate = startDate
         task.category = category!
         
         do {
@@ -90,6 +90,7 @@ struct AddTaskView: View {
             print("Unknown error: ", error)
         }
         
+        NotificationCenter.shared.scheduleTaskReminderNotification(task: task)
     }
 }
 

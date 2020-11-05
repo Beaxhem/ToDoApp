@@ -21,7 +21,13 @@ struct OptionsView<T: Optionable>: View {
     
     var body: some View {
         HStack {
-            Text(title)
+            HStack {
+                Circle()
+                    .fill(Color(hex: (selectedOption as? Category)?.color ?? "#000000"))
+                    .frame(width: 20)
+                Text(title)
+            }
+            
             Spacer()
             Menu(selectedOption != nil ? selectedOption!.asOption().title : placeholder) {
                 ForEach(options) { optionable in

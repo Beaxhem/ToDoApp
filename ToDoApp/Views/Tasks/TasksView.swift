@@ -22,7 +22,7 @@ struct TasksView: View {
    
     var body: some View {
         NavigationView {
-            ZStack {
+            AddTaskButtonView {
                 Color.backgroundColor.edgesIgnoringSafeArea(.all)
                 ScrollView {
                     VStack(alignment: .leading) {
@@ -36,41 +36,16 @@ struct TasksView: View {
                         }
                         .padding(.bottom, 40)
                         
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(today)
-                                    .font(.caption)
-                                
-                                Text("Today")
-                                    .bold()
-                                    .font(.title)
-                            }
+                    
+                        VStack(alignment: .leading) {
+                            Text(today)
+                                .font(.caption)
                             
-                            Spacer()
-                            
-                            Button {
-                                withAnimation {
-                                    sheetManager.showPartialSheet(content: {
-                                        AddTaskView()
-                                    })
-                                }
-                                
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus")
-                                    
-                                    Text("Add task")
-                                        .bold()
-                                        
-                                }
-                                .foregroundColor(.white)
-                                .padding(10)
-                                .background(Color.red)
-                                .cornerRadius(10)
-                                    
-                                    
-                            }
+                            Text("Today")
+                                .bold()
+                                .font(.title)
                         }
+                            
                         CalendarLineView(selectedDate: $selectedDate)
                         
                         TasksListView(selectedDate: $selectedDate)

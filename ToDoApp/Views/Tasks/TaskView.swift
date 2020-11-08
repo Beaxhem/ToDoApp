@@ -17,10 +17,10 @@ struct TaskView: View {
     var body: some View {
         if !task.isInvalidated {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Urgent")
+                Text(task.category!.name)
                     .autocapitalization(.allCharacters)
                     .font(.headline)
-                    .foregroundColor(.red)
+                    .foregroundColor(Color(hex: task.category?.color ?? "#000000"))
                     .padding(0)
                 Divider()
                     .padding(.top, 7)

@@ -19,7 +19,7 @@ struct TasksView: View {
         let formatter = getFormatter(style: .medium)
         return formatter.string(from: date)
     }
-   
+    
     var body: some View {
         NavigationView {
             AddTaskButtonView {
@@ -37,14 +37,7 @@ struct TasksView: View {
                         .padding(.bottom, 40)
                         
                     
-                        VStack(alignment: .leading) {
-                            Text(today)
-                                .font(.caption)
-                            
-                            Text("Today")
-                                .bold()
-                                .font(.title)
-                        }
+                        DateIndicator(date: $selectedDate)
                             
                         CalendarLineView(selectedDate: $selectedDate)
                         

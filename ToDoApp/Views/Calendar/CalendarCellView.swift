@@ -28,9 +28,9 @@ struct CalendarCell: View {
                         .foregroundColor(today ? .red : .black)
                     
                     HStack {
-                        ForEach(getTodaysCategories(date: date)) { category in
+                        ForEach(getTodaysColors(date: date), id: \.self) { color in
                             Circle()
-                                .fill(Color(hex: category.color))
+                                .fill(Color(hex: color))
                                 .frame(width: 3)
                         }
                         
@@ -68,20 +68,20 @@ struct CalendarCell: View {
         }
     }
     
-    func getTodaysCategories(date: Date) -> [Category] {
-        var categories = [Category]()
+    func getTodaysColors(date: Date) -> [String] {
+        var categories = [String: Bool]()
         let formatter = getFormatter(style: .medium)
         
         for task in DatabaseManager.shared.allTasks {
-            if formatter.string(from: task.startDate) == formatter.string(from: date) {
-                if let category = task.category {
-                    categories.append(category)
+            if formatter.string(from: task.startDate) == formatter.string(from: date), let category = task.category {
+                if categories[category.color] == nil {
+                    categories[category.color] = true
                 }
-                
             }
         }
         
-        return Array(Set(categories))
+        
+        return Array(categories.keys)
     }
 }
 
